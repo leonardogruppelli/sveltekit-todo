@@ -5,11 +5,7 @@
   export let placeholder: string = "";
   export let raw: boolean = false;
 
-  function update(
-    event: Event & {
-      currentTarget: EventTarget & HTMLInputElement;
-    }
-  ) {
+  function update(event: InputEvent) {
     value = event.currentTarget.value;
   }
 </script>
@@ -20,7 +16,7 @@
   class:py-1={!raw}
   class:bg-white={!raw}
   class:border={!raw}
-  class:border-gray-300={!raw}
+  class:border-gray-400={!raw}
   class:shadow-md={!raw}
   class:focus-within:ring-1={!raw}
   class:focus-within:ring-blue-500={!raw}

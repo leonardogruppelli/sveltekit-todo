@@ -1,6 +1,7 @@
 {
   "name": "svelte-todo",
   "version": "0.0.1",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "svelte-kit dev -o -p 5000",
@@ -15,6 +16,7 @@
     "svelte-material-icons": "^1.0.3"
   },
   "devDependencies": {
+    "@poppanator/sveltekit-svg": "^0.3.1",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "autoprefixer": "^10.4.2",
