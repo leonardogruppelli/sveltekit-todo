@@ -27,12 +27,11 @@
     },
   ];
 
+  $: active = (route: string) => $page.url.pathname === route;
+  $: active && close();
+
   function close() {
     $ui.sidebar = false;
-  }
-
-  function active(route: string) {
-    return $page.url.pathname === route;
   }
 </script>
 
@@ -54,6 +53,7 @@
     -translate-x-full
     transition-transform
     duration-300
+    z-10
     md:w-auto
     md:static
     md:transform-none
@@ -67,12 +67,12 @@
     </button>
   </div>
 
-  <nav class="h-full px-6 py-4 md:px-8 md:py-6">
+  <nav class="px-6 py-4 md:px-8 md:py-6">
     <div class="w-24 max-w-full mx-auto mb-6">
       <Logo />
     </div>
 
-    <ul class="h-full flex flex-col gap-1">
+    <ul class="flex flex-col gap-1">
       {#each routes as route}
         <li class="h-12 md:h-auto lg:h-12">
           <a

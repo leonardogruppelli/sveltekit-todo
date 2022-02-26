@@ -8,15 +8,14 @@
   import Star from "svelte-material-icons/StarOutline.svelte";
   import Starred from "svelte-material-icons/Star.svelte";
   import Delete from "svelte-material-icons/TrashCan.svelte";
+  import { todos } from "$lib/store/todos";
   import { nanoid } from "nanoid";
   import { fade, scale } from "svelte/transition";
-  import type { ITodo } from "./todo.types";
 
   let search: string = "";
   let name: string = "";
-  let todos: ITodo[] = [];
 
-  $: sorted = todos
+  $: sorted = $todos
     .filter((todo) => todo.text.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => {
       if (a.done && !a.starred && b.done && b.starred) {
@@ -43,12 +42,16 @@
         return -1;
       }
 
-      return a.created.getTime() - b.created.getTime();
+      if (a.created?.getTime && b.created?.getTime) {
+        return a.created.getTime() - b.created.getTime();
+      }
+
+      return 0;
     });
 
   function add(): void {
-    todos = [
-      ...todos,
+    $todos = [
+      ...$todos,
       {
         id: nanoid(),
         text: name,
@@ -62,19 +65,19 @@
   }
 
   function check(id: string): void {
-    const index: number = todos.findIndex((todo) => todo.id === id);
+    const index: number = $todos.findIndex((todo) => todo.id === id);
 
-    todos[index].done = !todos[index].done;
+    $todos[index].done = !$todos[index].done;
   }
 
   function star(id: string): void {
-    const index: number = todos.findIndex((todo) => todo.id === id);
+    const index: number = $todos.findIndex((todo) => todo.id === id);
 
-    todos[index].starred = !todos[index].starred;
+    $todos[index].starred = !$todos[index].starred;
   }
 
   function remove(id: string): void {
-    todos = todos.filter((todo) => todo.id !== id);
+    $todos = $todos.filter((todo) => todo.id !== id);
   }
 </script>
 
@@ -90,11 +93,15 @@
     </i>
   </Input>
 
-  <Input name="name" label="Name" placeholder="Task name" bind:value={name} />
-
-  <Button onClick={add}>
-    <Plus />
-  </Button>
+  <Input name="name" label="Name" placeholder="Task name" bind:value={name}>
+    <button
+      slot="action"
+      class="p-1 bg-blue-500 shadow-sm rounded-full text-white text-lg"
+      on:click={add}
+    >
+      <Plus />
+    </button>
+  </Input>
 </div>
 
 <ul class="flex flex-col gap-2">
