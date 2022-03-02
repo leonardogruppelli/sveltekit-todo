@@ -1,6 +1,5 @@
 <script lang="ts">
   import Input from "$lib/components/input/input.svelte";
-  import Button from "$lib/components/button/button.svelte";
   import Search from "svelte-material-icons/Magnify.svelte";
   import Plus from "svelte-material-icons/Plus.svelte";
   import Blank from "svelte-material-icons/RadioboxBlank.svelte";

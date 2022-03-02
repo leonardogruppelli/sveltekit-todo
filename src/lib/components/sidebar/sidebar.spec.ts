@@ -1,4 +1,3 @@
-import type { Writable } from "svelte/store";
 import type { SvelteComponent } from "svelte";
 
 export interface IRoute {

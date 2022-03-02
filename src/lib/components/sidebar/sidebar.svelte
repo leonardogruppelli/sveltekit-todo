@@ -7,7 +7,7 @@
   import { page } from "$app/stores";
   import { ui } from "$lib/store/ui";
   import { clickoutside } from "$lib/hooks/click-outside";
-  import type { IRoute } from "./sidebar.types";
+  import type { IRoute } from "./sidebar.spec";
 
   let routes: IRoute[] = [
     {

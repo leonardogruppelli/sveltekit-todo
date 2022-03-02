@@ -1,6 +1,6 @@
 import { writable, type Writable } from "svelte/store";
 import { browser } from "$app/env";
-import type { ITodo } from "$lib/components/todo/todo.types";
+import type { ITodo } from "$lib/components/todo/todo.spec";
 
 export let todos: Writable<ITodo[]> = writable<ITodo[]>(
   browser
