@@ -9,7 +9,10 @@
   import Delete from "svelte-material-icons/TrashCan.svelte";
   import { todos } from "$lib/store/todos";
   import { nanoid } from "nanoid";
-  import { fade, scale } from "svelte/transition";
+  import { fade, fly } from "svelte/transition";
+
+  const duration: number = 300;
+  const delay: number = 500;
 
   let search: string = "";
   let name: string = "";
@@ -117,8 +120,8 @@
   {#if !sorted.length}
     <li
       class="h-14 flex items-center justify-center px-4 bg-white border border-gray-400 shadow-lg rounded-lg"
-      in:fade={{ duration: 300, delay: 500 }}
-      out:fade={{ duration: 300 }}
+      in:fade={{ duration, delay }}
+      out:fade={{ duration }}
     >
       <p>No result found...</p>
     </li>
@@ -129,8 +132,8 @@
         class:bg-gray-200={todo.done}
         class:text-gray-500={!todo.done}
         class:hover:border-blue-500={!todo.done}
-        in:scale={{ duration: 300, delay: !index ? 500 : 0 }}
-        out:fade={{ duration: 300 }}
+        in:fly={{ x: 10, duration, delay: !index ? delay : 0 }}
+        out:fade={{ duration }}
       >
         <div class="grow-0 shrink-0 basis-10 flex items-center">
           <button
