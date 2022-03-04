@@ -12,6 +12,7 @@
   import Sidebar from "$lib/components/sidebar/sidebar.svelte";
   import Header from "$lib/components/header/header.svelte";
   import Transition from "$lib/components/transition/transition.svelte";
+  import Loader from "$lib/components/loader/loader.svelte";
   import "../app.css";
 
   export let url: string;
@@ -23,7 +24,9 @@
   <div class="flex-1 flex flex-col">
     <Header />
 
-    <main class="flex-1 block p-6 overflow-auto">
+    <main class="flex-1 block px-6 pt-7 pb-6 relative overflow-auto">
+      <Loader />
+
       <Transition {url}>
         <slot />
       </Transition>

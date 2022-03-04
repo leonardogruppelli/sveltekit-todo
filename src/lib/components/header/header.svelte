@@ -10,7 +10,7 @@
 </script>
 
 <header
-  class="h-20 flex items-center justify-between px-6 bg-white border-b border-b-gray-400 shadow-md md:justify-end"
+  class="h-20 flex items-center justify-between px-6 bg-white border-b border-b-gray-400 md:justify-end"
 >
   <button class="md:hidden" on:click={toggle}>
     <Menu size="40px" />

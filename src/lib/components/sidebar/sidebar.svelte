@@ -4,7 +4,7 @@
   import Home from "svelte-material-icons/Home.svelte";
   import Todo from "svelte-material-icons/Table.svelte";
   import About from "svelte-material-icons/Information.svelte";
-  import { page } from "$app/stores";
+  import { navigating, page } from "$app/stores";
   import { ui } from "$lib/store/ui";
   import { clickoutside } from "$lib/hooks/click-outside";
   import type { IRoute } from "./sidebar.spec";
@@ -27,8 +27,9 @@
     },
   ];
 
-  $: active = (route: string) => $page.url.pathname === route;
-  $: active && close();
+  $: path = $page.url.pathname;
+  $: if ($navigating) close();
+  $: active = (route: string) => path === route;
 
   function close() {
     $ui.sidebar = false;

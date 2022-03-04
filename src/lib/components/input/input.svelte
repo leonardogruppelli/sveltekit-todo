@@ -18,8 +18,7 @@
   class:border={!raw}
   class:border-gray-400={!raw}
   class:shadow-md={!raw}
-  class:focus-within:ring-1={!raw}
-  class:focus-within:ring-blue-500={!raw}
+  class:focus-within:border-blue-500={!raw}
 >
   <div class="flex flex-col justify-center">
     {#if label}
